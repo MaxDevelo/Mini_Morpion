@@ -4,12 +4,9 @@ import Model.Board;
 import Model.Game;
 import Model.Player;
 import Model.TypeTeam;
-import p21.td6.View.GameView;
+import View.GameView;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class MorpionFacade {
     private Board _board;

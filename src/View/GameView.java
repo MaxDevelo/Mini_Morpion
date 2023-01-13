@@ -1,4 +1,4 @@
-package p21.td6.View;
+package View;
 
 import Controller.MorpionFacade;
 import Model.GameObserver;
