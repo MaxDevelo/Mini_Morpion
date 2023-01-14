@@ -6,7 +6,7 @@ import java.util.List;
 public class Board {
 
     private final List<GameObserver> _listeners = new ArrayList<>();
-    private Square[][] _board;
+    private static Square[][] _board;
     public Board(){
         this._board = new Square[3][3];
         // génération du tableau
@@ -54,7 +54,7 @@ public class Board {
         return false;
     }
 
-    public Boolean verifyIfWinner(Player player){
+    public static Boolean verifyIfWinner(Player player){
         TypeTeam square;
 
         if(TypeTeam.X.equals(player.getType())){
@@ -79,18 +79,21 @@ public class Board {
 
         return false;
     }
-    public Boolean verifyMatchNull(){
+    public static Square[][] getBoard(){
+        return _board;
+    }
+    public static Boolean verifyMatchNull(){
 
         for(int l = 0; l<3; l++){
             for(int c = 0; c<3; c++){
-                if(this._board[l][c].getSquare() == null){
+                if(_board[l][c].getSquare() == null){
                     return false;
                 }
             }
         }
         return true;
     }
-    public Boolean verifyLine(int line, TypeTeam type){
+    public static Boolean verifyLine(int line, TypeTeam type){
         for(int i = 0; i<3; i++){
             if(!type.equals(_board[line][i].getSquare())){
                 return false;
@@ -98,7 +101,7 @@ public class Board {
         }
         return true;
     }
-    public Boolean verifyColumn(int column, TypeTeam type){
+    public static Boolean verifyColumn(int column, TypeTeam type){
         for(int i = 0; i<3; i++){
             if(!type.equals(_board[i][column].getSquare())){
                 return false;
@@ -106,7 +109,7 @@ public class Board {
         }
         return true;
     }
-    public Boolean verifyDiagonalLeft(int line, TypeTeam type){
+    public static Boolean verifyDiagonalLeft(int line, TypeTeam type){
         int l = line;
         for(int i = 0; i<3; i++){
             if(!type.equals(_board[l][i].getSquare())){
@@ -117,11 +120,10 @@ public class Board {
 
         return true;
     }
-    public Boolean verifyDiagonalRight(int line, TypeTeam type){
+    public static Boolean verifyDiagonalRight(int line, TypeTeam type){
         int l = line;
 
         for(int i = 2; i >= 0; i--){
-            System.out.println("row: " + l  + " column: " + i);
             if(!type.equals(_board[l][i].getSquare())){
                 return false;
             }
